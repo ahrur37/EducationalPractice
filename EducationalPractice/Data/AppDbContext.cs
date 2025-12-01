@@ -265,7 +265,12 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.Password)
                 .HasMaxLength(30)
                 .HasColumnName("password");
+            entity.Property(e => e.RegNumber).HasColumnName("reg_number");
             entity.Property(e => e.TabNumEmployee).HasColumnName("tab_num_employee");
+
+            entity.HasOne(d => d.RegNumberNavigation).WithMany(p => p.Logins)
+                .HasForeignKey(d => d.RegNumber)
+                .HasConstraintName("login_reg_number_fkey");
 
             entity.HasOne(d => d.TabNumEmployeeNavigation).WithMany(p => p.Logins)
                 .HasForeignKey(d => d.TabNumEmployee)

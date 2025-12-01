@@ -13,15 +13,18 @@ namespace EducationalPractice
         public override void Initialize()
         {
             AvaloniaXamlLoader.Load(this);
-            DbContext.Academics.ToList();
-            DbContext.Departments.ToList();
-            DbContext.Exams.ToList();
-            DbContext.Employees.ToList();
-            DbContext.Engineers.ToList();
-            DbContext.Logins.ToList();
-            DbContext.Faculties.ToList();
-            DbContext.Specialties.ToList();
-            DbContext.Students.ToList();
+            DbContext.Faculties.ToList(); // Название и абривиатура факультета
+            DbContext.Departments.ToList(); // Название, шифр Кафедры и Id_факультета
+            DbContext.Employees.ToList(); // Информация о сотрудниках
+            DbContext.Logins.ToList(); // ДОБАВЛЕНАЯ ТАБЛИЦА логин и пароль сотрудников
+            DbContext.Specialties.ToList(); // Шифр кафедры, направление, номер направления
+            DbContext.Disciplines.ToList(); // Код специальности, трудоёмкость, название дисциплины,
+            DbContext.Applications.ToList(); // Связывает специальности и дисциплины
+            DbContext.HeadOfDepts.ToList(); // Дополнительная информация о завкафах
+            DbContext.Engineers.ToList(); // Дополнительная информация об инженерах
+            DbContext.Teachers.ToList(); // Дополнительная информация о преподавателях
+            DbContext.Students.ToList(); // Список студентов
+            DbContext.Exams.ToList(); // Журнал экзаменов
         }
 
         public override void OnFrameworkInitializationCompleted()

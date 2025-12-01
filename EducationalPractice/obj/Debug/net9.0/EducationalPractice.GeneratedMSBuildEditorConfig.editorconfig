@@ -35,5 +35,23 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [C:/Users/ahrur/source/repos/EducationalPractice/EducationalPractice/Control/AuthControl.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/ahrur/source/repos/EducationalPractice/EducationalPractice/Control/DisciplinesList.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/ahrur/source/repos/EducationalPractice/EducationalPractice/Control/ExamsList.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/ahrur/source/repos/EducationalPractice/EducationalPractice/Control/MainControls.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/ahrur/source/repos/EducationalPractice/EducationalPractice/Control/StudentsList.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/ahrur/source/repos/EducationalPractice/EducationalPractice/Control/TeachersList.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/ahrur/source/repos/EducationalPractice/EducationalPractice/Views/CreateAndChangeTeachers.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/ahrur/source/repos/EducationalPractice/EducationalPractice/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

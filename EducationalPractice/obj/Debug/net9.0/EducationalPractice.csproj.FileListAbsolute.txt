@@ -206,3 +206,4 @@ C:\Users\ahrur\source\repos\EducationalPractice\EducationalPractice\obj\Debug\ne
 C:\Users\ahrur\source\repos\EducationalPractice\EducationalPractice\obj\Debug\net9.0\EducationalPractice.pdb
 C:\Users\ahrur\source\repos\EducationalPractice\EducationalPractice\obj\Debug\net9.0\EducationalPractice.genruntimeconfig.cache
 C:\Users\ahrur\source\repos\EducationalPractice\EducationalPractice\obj\Debug\net9.0\ref\EducationalPractice.dll
+C:\Users\ahrur\source\repos\EducationalPractice\EducationalPractice\obj\Debug\net9.0\EducationalPractice.sourcelink.json

@@ -1,0 +1,43 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="EducationalPractice.Control.TeachersList">
+     <Grid Grid.Column="1" RowDefinitions="*, Auto">
+            <DataGrid  DoubleTapped="DataGrid_DoubleTapped" IsReadOnly="True" x:Name="DataGridTeachers" Grid.Row="0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ФИО" Binding="{Binding TabNumberNavigation.Fullname}"/>
+                    <DataGridTextColumn Header="Звание" Binding="{Binding Rank}"/>
+                    <DataGridTextColumn Header="Степень" Binding="{Binding Degree}"/>
+                    <DataGridTextColumn Header="Зарплата" Binding="{Binding TabNumberNavigation.Salary}"/>
+                    
+                    <DataGridTemplateColumn Header="Уволить" Width="93">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Click="DeleteButton_Click" Name="DeleteBtn" Content="🗑️"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Button Content="Добавление" Name="AddBtn"  Click="AddButton_Click" HorizontalAlignment="Left"/>
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                    <StackPanel>
+                    <TextBlock Text="Фильтрация по категориям" Margin="10,0,0,5"/>
+                    </StackPanel>
+                    <StackPanel>
+                    <TextBlock Text="Фильтрация по ценам" Margin="10,0,0,5"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="От" Margin="10,0,0,5"/>
+                        <TextBox Name="MinPriceText" TextChanged="MinPrice_OnTextChanged" Margin="10,0,0,5"/>
+                        <TextBlock Text="До" Margin="10,0,0,5"/>
+                        <TextBox Name="MaxPriceText" TextChanged="MaxPrice_OnTextChanged" Margin="10,0,0,5"/>
+                    </StackPanel>
+                    </StackPanel>
+                    <Button Content="Сбросить фильтры" Name="ResetBtn"  Click="ResetButton_Click" HorizontalAlignment="Left"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+</UserControl>

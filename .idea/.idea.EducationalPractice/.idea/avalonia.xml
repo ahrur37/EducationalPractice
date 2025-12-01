@@ -5,7 +5,14 @@
       <map>
         <entry key="EducationalPractice/App.axaml" value="EducationalPractice/EducationalPractice.csproj" />
         <entry key="EducationalPractice/Control/AuthControl.axaml" value="EducationalPractice/EducationalPractice.csproj" />
+        <entry key="EducationalPractice/Control/DisciplinesList.axaml" value="EducationalPractice/EducationalPractice.csproj" />
+        <entry key="EducationalPractice/Control/ExamsList.axaml" value="EducationalPractice/EducationalPractice.csproj" />
+        <entry key="EducationalPractice/Control/MainControls.axaml" value="EducationalPractice/EducationalPractice.csproj" />
+        <entry key="EducationalPractice/Control/StudentsList.axaml" value="EducationalPractice/EducationalPractice.csproj" />
+        <entry key="EducationalPractice/Control/TeachersList.axaml" value="EducationalPractice/EducationalPractice.csproj" />
         <entry key="EducationalPractice/MainWindow.axaml" value="EducationalPractice/EducationalPractice.csproj" />
+        <entry key="EducationalPractice/Views/CreateAndChangeTeachers.axaml" value="EducationalPractice/EducationalPractice.csproj" />
+        <entry key="EducationalPractice/Views/MainWindow.axaml" value="EducationalPractice/EducationalPractice.csproj" />
       </map>
     </option>
   </component>

@@ -9,9 +9,13 @@ public partial class Login
 
     public int? TabNumEmployee { get; set; }
 
+    public int? RegNumber { get; set; }
+
     public string? Login1 { get; set; }
 
     public string? Password { get; set; }
+
+    public virtual Student? RegNumberNavigation { get; set; }
 
     public virtual Employee? TabNumEmployeeNavigation { get; set; }
 }

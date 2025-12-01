@@ -14,4 +14,6 @@ public partial class Student
     public virtual ICollection<Exam> Exams { get; set; } = new List<Exam>();
 
     public virtual Specialty? IdSpecialityNavigation { get; set; }
+
+    public virtual ICollection<Login> Logins { get; set; } = new List<Login>();
 }
