@@ -18,14 +18,11 @@ public partial class CreateAndChangeTeachers : Window
 
         if (VariableData.selectUser == null)
         {
-            DataContext = new Login(
-                new Employee());
+            DataContext = new Login();
         }
 
-        if (VariableData.selectedProdCategory != null)
-        {
-            ComboDepart.SelectedItem = VariableData.selectUser.TabNumEmployeeNavigation.IdDepartNavigation;
-        }
+        ComboDepart.SelectedItem = VariableData.selectUser.TabNumEmployeeNavigation.IdDepartNavigation;
+        
         DataContext = VariableData.selectUser;
     }
     private void SaveButton(object? sender, RoutedEventArgs e)

@@ -1,0 +1,31 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="EducationalPractice.Views.CreateAndChangeDisciplines"
+        Title="CreateAndChangeDisciplines">
+        <Grid>
+                <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Код дисциплины"/>
+                        <TextBox Width="250" x:Name="CodeText" Text="{Binding Code}"/>
+                        
+                        <TextBlock Text="Нагрузка в часах"/>
+                        <TextBox Width="250" x:Name="HoursText" Text="{Binding Hours}"/>
+                        
+                        <TextBlock Text="Название дисциплины"/>
+                        <TextBox Width="250" x:Name="NameDiscText" Text="{Binding NameDisc}"/>
+                        
+                        <TextBlock Text="Департамент"/>
+                        <ComboBox x:Name="ComboDepart" HorizontalAlignment="Right" Width="200"  >
+                                <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                                <TextBlock x:Name="NameDepartText" FontWeight="Bold" Text="{Binding NameDepart}"/>
+                                        </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        
+                        <Button Content="Сохранить" FontSize="20" Margin="10" Click="SaveButton"/>
+                </StackPanel>   
+        </Grid>
+</Window>

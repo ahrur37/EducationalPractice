@@ -42,11 +42,11 @@ public partial class DisciplinesList : UserControl
 
     private async void AddButton_Click(object? sender, RoutedEventArgs e)
     {
-        VariableData.selectUser = null;
+        VariableData.selectDiscipline = null;
         
         var parent = this.VisualRoot as Window;
-        var addwinwUser = new CreateAndChangeTeachers();
-        await addwinwUser.ShowDialog(parent);
+        var addDiscipline = new CreateAndChangeDisciplines();
+        await addDiscipline.ShowDialog(parent);
     }
 
     private void ComboCategory_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)

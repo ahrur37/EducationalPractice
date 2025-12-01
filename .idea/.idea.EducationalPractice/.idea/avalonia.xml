@@ -11,6 +11,9 @@
         <entry key="EducationalPractice/Control/StudentsList.axaml" value="EducationalPractice/EducationalPractice.csproj" />
         <entry key="EducationalPractice/Control/TeachersList.axaml" value="EducationalPractice/EducationalPractice.csproj" />
         <entry key="EducationalPractice/MainWindow.axaml" value="EducationalPractice/EducationalPractice.csproj" />
+        <entry key="EducationalPractice/Views/CreateAndChangeDisciplines.axaml" value="EducationalPractice/EducationalPractice.csproj" />
+        <entry key="EducationalPractice/Views/CreateAndChangeExams.axaml" value="EducationalPractice/EducationalPractice.csproj" />
+        <entry key="EducationalPractice/Views/CreateAndChangeStudents.axaml" value="EducationalPractice/EducationalPractice.csproj" />
         <entry key="EducationalPractice/Views/CreateAndChangeTeachers.axaml" value="EducationalPractice/EducationalPractice.csproj" />
         <entry key="EducationalPractice/Views/MainWindow.axaml" value="EducationalPractice/EducationalPractice.csproj" />
       </map>

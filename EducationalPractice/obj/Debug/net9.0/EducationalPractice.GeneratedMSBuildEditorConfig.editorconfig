@@ -50,6 +50,15 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [C:/Users/ahrur/source/repos/EducationalPractice/EducationalPractice/Control/TeachersList.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/ahrur/source/repos/EducationalPractice/EducationalPractice/Views/CreateAndChangeDisciplines.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/ahrur/source/repos/EducationalPractice/EducationalPractice/Views/CreateAndChangeExams.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/ahrur/source/repos/EducationalPractice/EducationalPractice/Views/CreateAndChangeStudents.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/ahrur/source/repos/EducationalPractice/EducationalPractice/Views/CreateAndChangeTeachers.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
