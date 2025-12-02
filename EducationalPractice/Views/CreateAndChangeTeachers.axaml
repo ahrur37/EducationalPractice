@@ -1,46 +1,158 @@
 ﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="EducationalPractice.Views.CreateAndChangeTeachers"
-        Title="CreateAndChangeTeachers">
-        <Grid>
-                <StackPanel Orientation="Horizontal">
-                        <StackPanel Orientation="Vertical">
-                                <TextBlock Text="ФИО"/>
-                                <TextBox Width="250" Name="FNameText" Text="{Binding TabNumberNavigation.Fullname}"/>
-                                <TextBlock Text="Звание"/>
-                                <TextBox Width="250" Name="RankText" Text="{Binding Rank}"/>
-                                <TextBlock Text="Степень"/>
-                                <TextBox Width="250" Name="DegreeText" Text="{Binding Degree}"/>
-                                <TextBlock Text="Зарплата"/>
-                                <TextBox Width="250" Name="SalaryText" Text="{Binding TabNumberNavigation.Salary}"/>
-                                
-                                <Button Content="Сохранить" FontSize="20" Margin="10" Click="SaveButton"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Vertical">
-                                <TextBlock Text="Логин"/>
-                                <TextBox Width="250" Name="LoginText" Text="{Binding Login}"/>
-                                <TextBlock Text="Пароль"/>
-                                <TextBox Width="250" Name="PasswordText" Text="{Binding Password}"/>
-                                <TextBlock Text="Департамент"/>
-                                <ComboBox Name="ComboDepart" HorizontalAlignment="Right" Width="200"  >
-                                        <ComboBox.ItemTemplate>
-                                                <DataTemplate>
-                                                        <TextBlock Name="NameDepartText" FontWeight="Bold" Text="{Binding NameDepart}"/>
-                                                </DataTemplate>
-                                        </ComboBox.ItemTemplate>
-                                </ComboBox>
-                                <TextBlock Text="Начальник"/>
-                                <ComboBox Name="ComboChief" HorizontalAlignment="Right" Width="200"  >
-                                        <ComboBox.ItemTemplate>
-                                                <DataTemplate>
-                                                        <TextBlock Name="NameChiefText" FontWeight="Bold" Text="{Binding Fullname}"/>
-                                                </DataTemplate>
-                                        </ComboBox.ItemTemplate>
-                                </ComboBox>
-                        </StackPanel>
-                </StackPanel>
+        Title="Редактирование преподавателя"
+        Width="700" Height="500"
+        MinWidth="600" MinHeight="450">
+
+    <!-- Фон с мягким градиентом -->
+    <Border Background="#F1F5F9">
+        <Grid Margin="30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Левая колонка: Персональные данные -->
+            <StackPanel Grid.Column="0" Spacing="8" Margin="0,0,20,0">
+                <TextBlock Text="ФИО" 
+                           FontSize="14" 
+                           FontWeight="Medium" 
+                           Foreground="#1E293B"/>
+                <TextBox Name="FNameText"
+                         Text="{Binding TabNumberNavigation.Fullname}"
+                         Height="40"
+                         FontSize="16"
+                         Padding="10"
+                         BorderThickness="1.5"
+                         BorderBrush="#CBD5E1"
+                         CornerRadius="6"/>
+
+                <TextBlock Text="Звание" 
+                           FontSize="14" 
+                           FontWeight="Medium" 
+                           Foreground="#1E293B"/>
+                <TextBox Name="RankText"
+                         Text="{Binding Rank}"
+                         Height="40"
+                         FontSize="16"
+                         Padding="10"
+                         BorderThickness="1.5"
+                         BorderBrush="#CBD5E1"
+                         CornerRadius="6"/>
+
+                <TextBlock Text="Степень" 
+                           FontSize="14" 
+                           FontWeight="Medium" 
+                           Foreground="#1E293B"/>
+                <TextBox Name="DegreeText"
+                         Text="{Binding Degree}"
+                         Height="40"
+                         FontSize="16"
+                         Padding="10"
+                         BorderThickness="1.5"
+                         BorderBrush="#CBD5E1"
+                         CornerRadius="6"/>
+
+                <TextBlock Text="Зарплата" 
+                           FontSize="14" 
+                           FontWeight="Medium" 
+                           Foreground="#1E293B"/>
+                <TextBox Name="SalaryText"
+                         Text="{Binding TabNumberNavigation.Salary}"
+                         Height="40"
+                         FontSize="16"
+                         Padding="10"
+                         BorderThickness="1.5"
+                         BorderBrush="#CBD5E1"
+                         CornerRadius="6"/>
+            </StackPanel>
+
+            <!-- Правая колонка: Аккаунт и должность -->
+            <StackPanel Grid.Column="1" Spacing="8" Margin="20,0,0,0">
+                <TextBlock Text="Логин" 
+                           FontSize="14" 
+                           FontWeight="Medium" 
+                           Foreground="#1E293B"/>
+                <TextBox Name="LoginText"
+                         Text="{Binding Login}"
+                         Height="40"
+                         FontSize="16"
+                         Padding="10"
+                         BorderThickness="1.5"
+                         BorderBrush="#CBD5E1"
+                         CornerRadius="6"/>
+
+                <TextBlock Text="Пароль" 
+                           FontSize="14" 
+                           FontWeight="Medium" 
+                           Foreground="#1E293B"/>
+                <TextBox Name="PasswordText"
+                         Text="{Binding Password}"
+                         PasswordChar="●"
+                         Height="40"
+                         FontSize="16"
+                         Padding="10"
+                         BorderThickness="1.5"
+                         BorderBrush="#CBD5E1"
+                         CornerRadius="6"/>
+
+                <TextBlock Text="Департамент" 
+                           FontSize="14" 
+                           FontWeight="Medium" 
+                           Foreground="#1E293B"/>
+                <ComboBox Name="ComboDepart"
+                          ItemsSource="{Binding Departments}"
+                          SelectedItem="{Binding SelectedDepartment}"
+                          Height="40"
+                          FontSize="16"
+                          Background="White"
+                          BorderThickness="1.5"
+                          BorderBrush="#CBD5E1"
+                          CornerRadius="6">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding NameDepart}" FontWeight="SemiBold"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <TextBlock Text="Начальник" 
+                           FontSize="14" 
+                           FontWeight="Medium" 
+                           Foreground="#1E293B"/>
+                <ComboBox Name="ComboChief"
+                          ItemsSource="{Binding Chiefs}"
+                          SelectedItem="{Binding SelectedChief}"
+                          Height="40"
+                          FontSize="16"
+                          Background="White"
+                          BorderThickness="1.5"
+                          BorderBrush="#CBD5E1"
+                          CornerRadius="6">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Fullname}" FontWeight="SemiBold"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+
+            <Button Content="Сохранить"
+                    Click="SaveButton"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Width="180"
+                    Height="45"
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    Background="#1E40AF"
+                    Foreground="White"
+                    CornerRadius="8"
+                    Margin="0,20,0,0">
+            </Button>
         </Grid>
+    </Border>
 </Window>

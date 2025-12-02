@@ -15,13 +15,17 @@ public partial class CreateAndChangeTeachers : Window
         InitializeComponent();
         
         ComboDepart.ItemsSource = App.DbContext.Departments.ToList();
+        ComboChief.ItemsSource = App.DbContext.Employees.ToList();
 
+        if (VariableData.selectDiscipline != null)
+        {
+            ComboDepart.SelectedItem = VariableData.selectUser.TabNumEmployeeNavigation.IdDepartNavigation;
+        }
+        
         if (VariableData.selectUser == null)
         {
             DataContext = new Login();
         }
-
-        ComboDepart.SelectedItem = VariableData.selectUser.TabNumEmployeeNavigation.IdDepartNavigation;
         
         DataContext = VariableData.selectUser;
     }

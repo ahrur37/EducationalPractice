@@ -5,5 +5,50 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="EducationalPractice.Views.CreateAndChangeExams"
         Title="CreateAndChangeExams">
-    Welcome to Avalonia!
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Дата экзамена"/>
+            <DatePicker x:Name="DateOfBirthPicker" 
+                        SelectedDate="{Binding ExamDate}" />
+                        
+            <TextBlock Text="Код дисциплины"/>
+            <TextBox Width="250" x:Name="DisciplineCodeText" Text="{Binding DisciplineCode}"/>
+            <ComboBox x:Name="ComboDiscipline" HorizontalAlignment="Right" Width="200">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock x:Name="DisciplineCodeText" FontWeight="Bold" Text="{Binding ClassRoom}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <TextBlock Text="Аудитория"/>
+            <ComboBox x:Name="ComboClassroom" HorizontalAlignment="Right" Width="200">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock x:Name="ClassRoomText" FontWeight="Bold" Text="{Binding ClassRoom}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            
+            <TextBlock Text="Преподаватель"/>
+            <ComboBox x:Name="ComboExaminer" HorizontalAlignment="Right" Width="200">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock x:Name="FullnameExaminerText" FontWeight="Bold" Text="{Binding Fullname}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <TextBlock Text="Студент"/>
+            <ComboBox x:Name="ComboStudent" HorizontalAlignment="Right" Width="200">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock x:Name="FullnameStudentText" FontWeight="Bold" Text="{Binding Fullname}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            
+            <Button Content="Сохранить" FontSize="20" Margin="10" Click="SaveButton"/>
+        </StackPanel>   
+    </Grid>
 </Window>

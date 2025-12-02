@@ -19,6 +19,8 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<Application> Applications { get; set; }
 
+    public virtual DbSet<Classroom> Classrooms { get; set; }
+
     public virtual DbSet<Country> Countries { get; set; }
 
     public virtual DbSet<Department> Departments { get; set; }
@@ -81,6 +83,16 @@ public partial class AppDbContext : DbContext
             entity.HasOne(d => d.IdSpecialtyNavigation).WithMany(p => p.Applications)
                 .HasForeignKey(d => d.IdSpecialty)
                 .HasConstraintName("application_id_specialty_fkey");
+        });
+
+        modelBuilder.Entity<Classroom>(entity =>
+        {
+            entity.HasKey(e => e.IdClassroom).HasName("classroom_pkey");
+
+            entity.ToTable("classroom");
+
+            entity.Property(e => e.IdClassroom).HasColumnName("Id_Classroom");
+            entity.Property(e => e.ClassRoom).HasMaxLength(4);
         });
 
         modelBuilder.Entity<Country>(entity =>
@@ -198,13 +210,11 @@ public partial class AppDbContext : DbContext
             entity.ToTable("exam");
 
             entity.Property(e => e.IdExam).HasColumnName("id_exam");
-            entity.Property(e => e.Classroom)
-                .HasMaxLength(20)
-                .HasColumnName("classroom");
             entity.Property(e => e.DisciplineCode).HasColumnName("discipline_code");
             entity.Property(e => e.ExamDate).HasColumnName("exam_date");
             entity.Property(e => e.ExaminerTab).HasColumnName("examiner_tab");
             entity.Property(e => e.Grade).HasColumnName("grade");
+            entity.Property(e => e.IdClassroom).HasColumnName("Id_Classroom");
             entity.Property(e => e.StudentReg).HasColumnName("student_reg");
 
             entity.HasOne(d => d.DisciplineCodeNavigation).WithMany(p => p.Exams)
@@ -214,6 +224,10 @@ public partial class AppDbContext : DbContext
             entity.HasOne(d => d.ExaminerTabNavigation).WithMany(p => p.Exams)
                 .HasForeignKey(d => d.ExaminerTab)
                 .HasConstraintName("exam_examiner_tab_fkey");
+
+            entity.HasOne(d => d.IdClassroomNavigation).WithMany(p => p.Exams)
+                .HasForeignKey(d => d.IdClassroom)
+                .HasConstraintName("exam_Id_Classroom_fkey");
 
             entity.HasOne(d => d.StudentRegNavigation).WithMany(p => p.Exams)
                 .HasForeignKey(d => d.StudentReg)

@@ -10,7 +10,7 @@
                     <DataGridTextColumn Header="Код дисциплины" Binding="{Binding Code}"/>
                     <DataGridTextColumn Header="Дисциплина" Binding="{Binding NameDisc}"/>
                     <DataGridTextColumn Header="Кол-во часов" Binding="{Binding Hours}"/>
-                    <DataGridTextColumn Header="Зарплата" Binding="{Binding IdDepartNavigation.NameDepart}"/>
+                    <DataGridTextColumn Header="Факультет" Binding="{Binding IdDepartNavigation.NameDepart}"/>
                     
                     <DataGridTemplateColumn Header="Удалить дисциплину" Width="150">
                         <DataGridTemplateColumn.CellTemplate>

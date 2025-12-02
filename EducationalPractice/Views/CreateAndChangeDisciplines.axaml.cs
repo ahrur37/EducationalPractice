@@ -16,7 +16,11 @@ public partial class CreateAndChangeDisciplines : Window
         DataContext = VariableData.selectDiscipline;
         
         ComboDepart.ItemsSource = App.DbContext.Departments.ToList();
-        ComboDepart.SelectedItem = VariableData.selectDiscipline.IdDepartNavigation;
+
+        if (VariableData.selectDiscipline != null)
+        {
+            ComboDepart.SelectedItem = VariableData.selectDiscipline.IdDepartNavigation;
+        }
         
         if (VariableData.selectDiscipline == null)
         {

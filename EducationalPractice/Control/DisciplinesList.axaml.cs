@@ -31,11 +31,7 @@ public partial class DisciplinesList : UserControl
     private async void DataGrid_DoubleTapped(object? sender, TappedEventArgs e)
     {
     }
-
-    private void BasketAdd_Click(object? sender, RoutedEventArgs e)
-    {
-    }
-
+    
     private void DeleteButton_Click(object? sender, RoutedEventArgs e)
     {
     }
@@ -48,19 +44,6 @@ public partial class DisciplinesList : UserControl
         var addDiscipline = new CreateAndChangeDisciplines();
         await addDiscipline.ShowDialog(parent);
     }
-
-    private void ComboCategory_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
-    {
-        ApplyAllFilter();
-    }
-
-    private void ApplyFilter()
-    {
-    }
-    
-    // private IEnumerable<Teacher> ApplyPriceFilter(IEnumerable<Teacher> products)
-    // {
-    // }
     
     private void ApplyAllFilter()
     {
