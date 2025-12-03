@@ -43,7 +43,7 @@ public partial class CreateAndChangeTeachers : Window
         TeacherDataContext.IdDepart = selectedDepart.IdDepart;
         TeacherDataContext.Chief = selectedChief.TabNumEmployee;
         
-        if (VariableData.selectDiscipline == null)
+        if (VariableData.selectUser == null)
         {
             App.DbContext.Employees.Add(TeacherDataContext);
         }

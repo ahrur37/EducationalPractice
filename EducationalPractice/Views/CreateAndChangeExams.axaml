@@ -1,54 +1,150 @@
 ﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="EducationalPractice.Views.CreateAndChangeExams"
-        Title="CreateAndChangeExams">
-    <Grid>
-        <StackPanel Orientation="Vertical">
-            <TextBlock Text="Дата экзамена"/>
-            <DatePicker x:Name="DateOfBirthPicker" 
-                        SelectedDate="{Binding ExamDate}" />
-                        
-            <TextBlock Text="Код дисциплины"/>
-            <TextBox Width="250" x:Name="DisciplineCodeText" Text="{Binding DisciplineCode}"/>
-            <ComboBox x:Name="ComboDiscipline" HorizontalAlignment="Right" Width="200">
+        Title="Редактирование экзамена"
+        Width="550" Height="700"
+        MinWidth="480" MinHeight="600"
+        Background="#F8FAFC">
+
+    <!-- Обёртка с отступами и тенью -->
+    <Border Margin="30" Padding="30">
+        <Border.Background>
+            <SolidColorBrush Color="White"/>
+        </Border.Background>
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="12" OffsetX="0" OffsetY="4" Color="#A0C4E0" Opacity="0.25"/>
+        </Border.Effect>
+
+        <StackPanel Spacing="16">
+
+            <!-- Заголовок -->
+            <TextBlock Text="Назначение экзамена"
+                       FontSize="26"
+                       FontWeight="SemiBold"
+                       HorizontalAlignment="Center"
+                       Foreground="#1E293B"
+                       Margin="0,0,0,30"/>
+
+            <!-- Дата экзамена -->
+            <TextBlock Text="Дата экзамена" 
+                       FontSize="14" 
+                       Foreground="#334155"/>
+            <DatePicker Name="ExamDatePicker"
+                        SelectedDate="{Binding ExamDate}"
+                        Height="40"
+                        FontSize="16"
+                        Background="White"
+                        BorderBrush="#CBD5E1"
+                        BorderThickness="1.5"
+                        CornerRadius="6"/>
+
+            <!-- Код дисциплины (текстовое поле) -->
+            <TextBlock Text="Код дисциплины" 
+                       FontSize="14" 
+                       Foreground="#334155"/>
+            <TextBox Name="DisciplineCodeText"
+                     Text="{Binding DisciplineCode}"
+                     Height="40"
+                     FontSize="16"
+                     Padding="10"
+                     BorderThickness="1.5"
+                     BorderBrush="#CBD5E1"
+                     Background="White"
+                     CornerRadius="6"/>
+
+            <!-- Выбор дисциплины -->
+            <TextBlock Text="Дисциплина" 
+                       FontSize="14" 
+                       Foreground="#334155"/>
+            <ComboBox Name="ComboDiscipline"
+                      ItemsSource="{Binding Disciplines}"
+                      SelectedItem="{Binding SelectedDiscipline}"
+                      Height="40"
+                      FontSize="16"
+                      Background="White"
+                      BorderBrush="#CBD5E1"
+                      BorderThickness="1.5"
+                      CornerRadius="6"
+                      HorizontalAlignment="Stretch">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock x:Name="DisciplineCodeText" FontWeight="Bold" Text="{Binding ClassRoom}"/>
+                        <TextBlock Text="{Binding NameDisc}" FontWeight="SemiBold"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <TextBlock Text="Аудитория"/>
-            <ComboBox x:Name="ComboClassroom" HorizontalAlignment="Right" Width="200">
+            <!-- Аудитория -->
+            <TextBlock Text="Аудитория" 
+                       FontSize="14" 
+                       Foreground="#334155"/>
+            <ComboBox Name="ComboClassroom"
+                      ItemsSource="{Binding Classrooms}"
+                      SelectedItem="{Binding SelectedClassroom}"
+                      Height="40"
+                      FontSize="16"
+                      Background="White"
+                      BorderBrush="#CBD5E1"
+                      BorderThickness="1.5"
+                      CornerRadius="6"
+                      HorizontalAlignment="Stretch">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock x:Name="ClassRoomText" FontWeight="Bold" Text="{Binding ClassRoom}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            
-            <TextBlock Text="Преподаватель"/>
-            <ComboBox x:Name="ComboExaminer" HorizontalAlignment="Right" Width="200">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock x:Name="FullnameExaminerText" FontWeight="Bold" Text="{Binding Fullname}"/>
+                        <TextBlock Text="{Binding ClassRoom}" FontWeight="SemiBold"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <TextBlock Text="Студент"/>
-            <ComboBox x:Name="ComboStudent" HorizontalAlignment="Right" Width="200">
+            <!-- Преподаватель -->
+            <TextBlock Text="Преподаватель" 
+                       FontSize="14" 
+                       Foreground="#334155"/>
+            <ComboBox Name="ComboExaminer"
+                      Height="40"
+                      FontSize="16"
+                      Background="White"
+                      BorderBrush="#CBD5E1"
+                      BorderThickness="1.5"
+                      CornerRadius="6"
+                      HorizontalAlignment="Stretch">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock x:Name="FullnameStudentText" FontWeight="Bold" Text="{Binding Fullname}"/>
+                        <TextBlock Text="{Binding Fullname}" FontWeight="SemiBold"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            
-            <Button Content="Сохранить" FontSize="20" Margin="10" Click="SaveButton"/>
-        </StackPanel>   
-    </Grid>
+
+            <!-- Студент -->
+            <TextBlock Text="Студент" 
+                       FontSize="14" 
+                       Foreground="#334155"/>
+            <ComboBox Name="ComboStudent"
+                      Height="40"
+                      FontSize="16"
+                      Background="White"
+                      BorderBrush="#CBD5E1"
+                      BorderThickness="1.5"
+                      CornerRadius="6"
+                      HorizontalAlignment="Stretch">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Fullname}" FontWeight="SemiBold"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <!-- Кнопка "Сохранить" -->
+            <Button Content="Сохранить"
+                    Click="SaveButton"
+                    Height="48"
+                    FontSize="18"
+                    FontWeight="SemiBold"
+                    Margin="0,24,0,0"
+                    HorizontalAlignment="Stretch"
+                    Background="#1E40AF"
+                    Foreground="White"
+                    CornerRadius="8">
+            </Button>
+
+        </StackPanel>
+    </Border>
 </Window>

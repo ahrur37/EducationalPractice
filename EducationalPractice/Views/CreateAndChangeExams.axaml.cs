@@ -16,7 +16,8 @@ public partial class CreateAndChangeExams : Window
         DataContext = VariableData.selectDiscipline;
         
         ComboClassroom.ItemsSource = App.DbContext.Classrooms.ToList();
-        ComboExaminer.ItemsSource = App.DbContext.Employees.Where(e => e.PositionEmp == "преподаватель" && e.PositionEmp == "зав. кафедрой").ToList();
+        ComboExaminer.ItemsSource = App.DbContext.Employees.Where(e => e.PositionEmp == "преподаватель" 
+                                                                       || e.PositionEmp == "зав. кафедрой").ToList();
         ComboStudent.ItemsSource = App.DbContext.Students.ToList();
         ComboDiscipline.ItemsSource = App.DbContext.Disciplines.ToList();
     
@@ -41,7 +42,7 @@ public partial class CreateAndChangeExams : Window
         var selectedStudent = ComboStudent.SelectedItem as Student;
         var selectedDiscipline = ComboDiscipline.SelectedItem as Discipline;
             
-        if(string.IsNullOrEmpty(DateOfBirthPicker.DayFormat) || string.IsNullOrEmpty(DisciplineCodeText.Text) || 
+        if(string.IsNullOrEmpty(ExamDatePicker.DayFormat) || string.IsNullOrEmpty(DisciplineCodeText.Text) || 
            ComboClassroom.SelectedItem == null || ComboExaminer.SelectedItem == null ||
            ComboStudent.SelectedItem == null || ComboDiscipline.SelectedItem == null) return;
             
@@ -51,7 +52,7 @@ public partial class CreateAndChangeExams : Window
         disciplineDataContext.DisciplineCode = selectedStudent.RegNumber;
         disciplineDataContext.DisciplineCode = selectedDiscipline.IdDiscipline;
         
-        if (VariableData.selectDiscipline == null)
+        if (VariableData.selectExam == null)
         {
             App.DbContext.Exams.Add(disciplineDataContext);
         }

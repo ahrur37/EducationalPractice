@@ -39,7 +39,18 @@ public partial class ExamsList : UserControl
     }
 
     private void DeleteButton_Click(object? sender, RoutedEventArgs e)
-    {
+    {        
+        var button = sender as Button;
+        var selectedExam = button?.DataContext as Exam;
+        
+        if (DataGridItems == null) return;
+        
+        VariableData.selectExam = selectedExam;
+        
+        App.DbContext.Exams.Remove(selectedExam);
+        App.DbContext.SaveChanges();
+        
+        DataGridItems.ItemsSource = App.DbContext.Exams.ToList();
     }
 
     private async void AddButton_Click(object? sender, RoutedEventArgs e)

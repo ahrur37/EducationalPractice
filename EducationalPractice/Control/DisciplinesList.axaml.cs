@@ -34,6 +34,17 @@ public partial class DisciplinesList : UserControl
     
     private void DeleteButton_Click(object? sender, RoutedEventArgs e)
     {
+        var button = sender as Button;
+        var selectDiscipline = button?.DataContext as Discipline;
+        
+        if (DataGridItems == null) return;
+        
+        VariableData.selectDiscipline = selectDiscipline;
+        
+        App.DbContext.Disciplines.Remove(selectDiscipline);
+        App.DbContext.SaveChanges();
+        
+        DataGridItems.ItemsSource = App.DbContext.Exams.ToList();
     }
 
     private async void AddButton_Click(object? sender, RoutedEventArgs e)

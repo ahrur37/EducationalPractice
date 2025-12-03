@@ -38,7 +38,18 @@ public partial class StudentsList : UserControl
     }
 
     private void DeleteButton_Click(object? sender, RoutedEventArgs e)
-    {
+    {        
+        var button = sender as Button;
+        var selectUser = button?.DataContext as Login;
+        
+        if (DataGridItems == null) return;
+        
+        VariableData.selectUser = selectUser;
+        
+        App.DbContext.Logins.Remove(selectUser);
+        App.DbContext.SaveChanges();
+        
+        DataGridItems.ItemsSource = App.DbContext.Exams.ToList();
     }
 
     private async void AddButton_Click(object? sender, RoutedEventArgs e)

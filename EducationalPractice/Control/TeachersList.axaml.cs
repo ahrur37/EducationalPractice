@@ -53,36 +53,16 @@ public partial class TeachersList : UserControl
     
     private void DeleteButton_Click(object? sender, RoutedEventArgs e)
     {
-    }
-
-    private void ComboCategory_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
-    {
-        ApplyAllFilter();
-    }
-
-    private void ApplyFilter()
-    {
-    }
-    
-    // private IEnumerable<Teacher> ApplyPriceFilter(IEnumerable<Teacher> products)
-    // {
-    // }
-    
-    private void ApplyAllFilter()
-    {
-    }
-
-    private void MinPrice_OnTextChanged(object? sender, TextChangedEventArgs e)
-    {
-        ApplyAllFilter();
-    }
-
-    private void MaxPrice_OnTextChanged(object? sender, TextChangedEventArgs e)
-    {
-        ApplyAllFilter();
-    }
-
-    private void ResetButton_Click(object? sender, RoutedEventArgs e)
-    {
+        var button = sender as Button;
+        var selectUser = button?.DataContext as Login;
+        
+        if (DataGridTeachers == null) return;
+        
+        VariableData.selectUser = selectUser;
+        
+        App.DbContext.Logins.Remove(selectUser);
+        App.DbContext.SaveChanges();
+        
+        DataGridTeachers.ItemsSource = App.DbContext.Exams.ToList();
     }
 }
