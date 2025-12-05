@@ -25,6 +25,7 @@ namespace EducationalPractice
             DbContext.Teachers.ToList(); // Дополнительная информация о преподавателях
             DbContext.Students.ToList(); // Список студентов
             DbContext.Exams.ToList(); // Журнал экзаменов
+            DbContext.Classrooms.ToList(); //
         }
 
         public override void OnFrameworkInitializationCompleted()

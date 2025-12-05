@@ -1,19 +1,103 @@
 ﻿<UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="EducationalPractice.Control.MainControls">
-    <Grid RowDefinitions="Auto, *">
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+
+    <!-- Оборачиваем всё содержимое в Border -->
+    <Border Background="#F0F4F8">
+        <Border.Styles>
+            <!-- Теперь стили можно размещать здесь -->
+            <Style Selector="Button.navButton">
+                <Setter Property="Background" Value="Gray"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Padding" Value="20,12"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="CornerRadius" Value="24"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+
+            <Style Selector="Button.navButton:pointerover /template/ ContentPresenter">
+                <Setter Property="Background" Value="#C7D2FE"/>
+            </Style>
+
+            <Style Selector="Button.navButton:pressed /template/ ContentPresenter">
+                <Setter Property="Background" Value="#A5B4FC"/>
+            </Style>
+
+            <Style Selector="Button.exitButton">
+                <Setter Property="Background" Value="#FECACA"/>
+                <Setter Property="Foreground" Value="#B91C1C"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Padding" Value="20,12"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="CornerRadius" Value="24"/>
+                <Setter Property="BorderThickness" Value="0"/>
+            </Style>
+
+            <Style Selector="Button.exitButton:pointerover /template/ ContentPresenter">
+                <Setter Property="Background" Value="#FCA5A5"/>
+            </Style>
+
+            <Style Selector="Button.exitButton:pressed /template/ ContentPresenter">
+                <Setter Property="Background" Value="#F87171"/>
+            </Style>
+        </Border.Styles>
+
+        <Grid RowDefinitions="Auto, *">
             
-            <Button Margin="5" Content="Преподы" Click="Button_Click_Teachers" Name="TeachersBtn"/>
-            <Button Content="Дисциплины" Margin="5" Click="Button_Click_Disciplines" Name="DisciplinesBtn"/>
-            <Button Content="Экзамены" Margin="5" Click="Button_Click_Exams" Name="ExamsBtn"/>
-            <Button Content="Студенты" Margin="5" Click="Button_Click_Students" Name="StudentsBtn"/>
-            
-            <Button Content="Выход" Click="Exit_Click"/>
-        </StackPanel>
-        <ContentControl Grid.Row="1" Margin="2" BorderBrush="Wheat" BorderThickness="1" x:Name="MainControl"/>
-    </Grid>
+            <Border Grid.Row="0" 
+                    Background="White" 
+                    Padding="20,15" 
+                    CornerRadius="0,0,12,12">
+                <Border.Effect>
+                    <DropShadowEffect Color="#A0C4E0" OffsetY="4" BlurRadius="8" Opacity="0.2"/>
+                </Border.Effect>
+
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Center" 
+                            Spacing="10">
+                    
+                    <Button Content="Преподы" 
+                            Click="Button_Click_Teachers" 
+                            x:Name="TeachersBtn"
+                            Classes="navButton"/>
+
+                    <Button Content="Дисциплины" 
+                            Click="Button_Click_Disciplines" 
+                            x:Name="DisciplineBtn"
+                            Classes="navButton"/>
+
+                    <Button Content="Экзамены" 
+                            Click="Button_Click_Exams" 
+                            x:Name="ExamBtn"
+                            Classes="navButton"/>
+
+                    <Button Content="Студенты" 
+                            Click="Button_Click_Students" 
+                            x:Name="StudentsBtn"
+                            Classes="navButton"/>
+
+                    <Button Content="Зав. кафедры" 
+                            Click="Button_Click_HeadOfDeptBtn" 
+                            x:Name="HeadOfDeptBtn"
+                            Classes="navButton"/>
+
+                    <Button Content="Выход" 
+                            Click="Exit_Click" 
+                            Classes="exitButton"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Контент -->
+            <ContentControl Grid.Row="1" 
+                            Margin="20" 
+                            BorderBrush="#E2E8F0" 
+                            BorderThickness="1" 
+                            CornerRadius="8" 
+                            x:Name="MainControl"/>
+        </Grid>
+    </Border>
 </UserControl>

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -24,35 +25,65 @@ public partial class CreateAndChangeTeachers : Window
         
         if (VariableData.selectUser == null)
         {
-            DataContext = new Login();
+            DataContext = new Login()
+            {
+                TabNumEmployeeNavigation = new Employee()
+                {
+                    Teacher = new Teacher()
+                }
+            };
+            return;
         }
         
         DataContext = VariableData.selectUser;
     }
-    private void SaveButton(object? sender, RoutedEventArgs e)
+    private async void SaveButton(object? sender, RoutedEventArgs e)
     {
         var selectedDepart = ComboDepart.SelectedItem as Department;
         var selectedChief = ComboChief.SelectedItem as Employee;
-        
-        if(string.IsNullOrEmpty(FNameText.Text) || string.IsNullOrEmpty(RankText.Text) || 
-           string.IsNullOrEmpty(DegreeText.Text) || string.IsNullOrEmpty(SalaryText.Text) || 
-           ComboDepart.SelectedItem == null || string.IsNullOrEmpty(LoginText.Text) || 
-           string.IsNullOrEmpty(PasswordText.Text) || ComboChief.SelectedItem == null) return;
-        
-        var TeacherDataContext = DataContext as Employee;
-        TeacherDataContext.IdDepart = selectedDepart.IdDepart;
-        TeacherDataContext.Chief = selectedChief.TabNumEmployee;
-        
-        if (VariableData.selectUser == null)
+
+        // Проверяем обязательные поля
+        if (string.IsNullOrWhiteSpace(FNameText.Text) ||
+            string.IsNullOrWhiteSpace(RankText.Text) ||
+            string.IsNullOrWhiteSpace(DegreeText.Text) ||
+            string.IsNullOrWhiteSpace(SalaryText.Text) ||
+            selectedDepart == null ||
+            string.IsNullOrWhiteSpace(LoginText.Text) ||
+            string.IsNullOrWhiteSpace(PasswordText.Text) ||
+            selectedChief == null)
         {
-            App.DbContext.Employees.Add(TeacherDataContext);
+            return;
         }
-        else
+
+        // Предположим, что основной сущностью является Employee
+        var employee = DataContext as Login;
+
+        if (employee == null)
         {
-            App.DbContext.Update(TeacherDataContext);
+            return;
         }
+
+        // Обновляем данные из формы
+        employee.TabNumEmployeeNavigation.Fullname = FNameText.Text.Trim();
+        employee.TabNumEmployeeNavigation.Teacher.Rank = RankText.Text.Trim();
+        employee.TabNumEmployeeNavigation.Teacher.Degree = DegreeText.Text.Trim();
+        employee.TabNumEmployeeNavigation.Salary = decimal.Parse(SalaryText.Text); // ← добавьте try/catch при необходимости
+        employee.Login1 = LoginText.Text.Trim();
+        employee.Password = PasswordText.Text; // ← Хэшируем пароль!
+        employee.TabNumEmployeeNavigation.IdDepart = selectedDepart.IdDepart;
+        employee.TabNumEmployeeNavigation.Chief = selectedChief.TabNumEmployee;
+
+       
+            if (VariableData.selectUser == null)
+            {
+                App.DbContext.Logins.Add(employee);
+            }
+            else
+            {
+                App.DbContext.Update(employee);
+            }
+
+            await App.DbContext.SaveChangesAsync(); // ← лучше использовать асинхронно
+            this.Close();
         
-        App.DbContext.SaveChanges();
-        this.Close();
-    }
-}
+    }}

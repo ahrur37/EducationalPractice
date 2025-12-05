@@ -11,17 +11,27 @@
                     <DataGridTextColumn Header="ФИО студента" Binding="{Binding StudentRegNavigation.Fullname}"/>
                     <DataGridTextColumn Header="ФИО преподавателя" Binding="{Binding ExaminerTabNavigation.Fullname}"/>
                     <DataGridTextColumn Header="Дата экзамена" Binding="{Binding ExamDate}"/>
-                    <DataGridTextColumn Header="Аудитория" Binding="{Binding Classroom}"/>
+                    <DataGridTextColumn Header="Аудитория" Binding="{Binding IdClassroomNavigation.ClassRoom}"/>
                     <DataGridTextColumn Header="Оценка" Binding="{Binding Grade}"/>
                     
                     <DataGridTemplateColumn Header="Уволить" Width="93">
                         <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
+                            <DataTemplate> 
                                 <Button Click="DeleteButton_Click" Name="DeleteBtn" Content="🗑️"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Изменить оценку" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate> 
+                                <Button Click="ChangeGradeButton_Click" Name="ChangeGrade" Content="✏️"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
+         <StackPanel Grid.Row="1">
+             <Button Content="Добавление" HorizontalAlignment="Left" Click="AddButton_Click"/>
+         </StackPanel>
         </Grid>
 </UserControl>

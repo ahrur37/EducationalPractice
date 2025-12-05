@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
 using EducationalPractice.Data;
 using EducationalPractice.Models;
 using EducationalPractice.Views;
@@ -14,8 +14,9 @@ namespace EducationalPractice.Control;
 
 public partial class StudentsList : UserControl
 {
-    private List<Student> allStudents = new List<Student>();
-
+    private List<Student> _allStudents = new();
+    private List<Specialty> _specialities = new();
+    
     public StudentsList()
     {
         InitializeComponent();
@@ -24,71 +25,88 @@ public partial class StudentsList : UserControl
 
     private void LoadData()
     {
-        DataGridItems.ItemsSource = App.DbContext.Students
-            .Include(p => p.IdSpecialityNavigation)
+        // Загрузка всех студентов и специальностей
+        _allStudents = App.DbContext.Students
+            .Include(s => s.IdSpecialityNavigation)
             .ToList();
+
+        _specialities = App.DbContext.Specialties.ToList();
+
+        // Заполнение ComboBox
+        SpecialityFilter.ItemsSource = _specialities.Select(s => s.Direction).ToList(); // или s.Code, если нужно по коду
+
+        // Применение фильтров (изначально без фильтрации)
+        ApplyFilters();
+    }
+
+    private void ApplyFilters()
+    {
+        var search = SearchBox.Text?.ToLower() ?? "";
+        var selectedSpeciality = SpecialityFilter.SelectedItem as string;
+
+        var filtered = _allStudents.Where(s =>
+        {
+            // Проверка по ФИО студента
+            bool matchesSearch = string.IsNullOrEmpty(search) ||
+                                 s.Fullname?.ToLower().Contains(search) == true;
+
+            // Проверка по специальности
+            bool matchesSpeciality = string.IsNullOrEmpty(selectedSpeciality) ||
+                                     s.IdSpecialityNavigation?.Direction == selectedSpeciality;
+
+            return matchesSearch && matchesSpeciality;
+        }).ToList();
+
+        DataGridItems.ItemsSource = filtered;
+    }
+
+    private void SearchBox_TextChanged(object? sender, TextChangedEventArgs e)
+    {
+        ApplyFilters();
+    }
+
+    private void SpecialityFilter_SelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        ApplyFilters();
     }
 
     private async void DataGrid_DoubleTapped(object? sender, TappedEventArgs e)
     {
+        var selectedStudent = DataGridItems.SelectedItem as Student; // Исправлено: Student, а не Login
+        if(selectedStudent == null) return; 
+        
+        VariableData.selectStudent = selectedStudent; // Исправлено: предполагаем, что есть VariableData.selectStudent
+        
+        var parent = this.VisualRoot as Window;
+        var addwinwStudents = new CreateAndChangeStudents(); // Исправлено: предполагаем, что есть CreateAndChangeStudents
+        await addwinwStudents.ShowDialog(parent);
+        
+        LoadData();
     }
-
-    private void BasketAdd_Click(object? sender, RoutedEventArgs e)
-    {
-    }
-
+    
     private void DeleteButton_Click(object? sender, RoutedEventArgs e)
     {        
         var button = sender as Button;
-        var selectUser = button?.DataContext as Login;
+        var selectedStudent = button?.DataContext as Student; // Исправлено: Student, а не Login
         
-        if (DataGridItems == null) return;
+        if (selectedStudent == null) return;
         
-        VariableData.selectUser = selectUser;
+        VariableData.selectStudent = selectedStudent; // Исправлено
         
-        App.DbContext.Logins.Remove(selectUser);
+        App.DbContext.Students.Remove(selectedStudent); // Исправлено: Students, а не Logins
         App.DbContext.SaveChanges();
         
-        DataGridItems.ItemsSource = App.DbContext.Exams.ToList();
+        LoadData(); // Обновляем список
     }
 
     private async void AddButton_Click(object? sender, RoutedEventArgs e)
     {
-        VariableData.selectUser = null;
+        VariableData.selectStudent = null; // Исправлено
 
         var parent = this.VisualRoot as Window;
-        var addwinwUser = new CreateAndChangeTeachers();
+        var addwinwUser = new CreateAndChangeStudents(); // Исправлено
         await addwinwUser.ShowDialog(parent);
-    }
-
-    private void ComboCategory_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
-    {
-        ApplyAllFilter();
-    }
-
-    private void ApplyFilter()
-    {
-    }
-
-// private IEnumerable<Teacher> ApplyPriceFilter(IEnumerable<Teacher> products)
-// {
-// }
-
-    private void ApplyAllFilter()
-    {
-    }
-
-    private void MinPrice_OnTextChanged(object? sender, TextChangedEventArgs e)
-    {
-        ApplyAllFilter();
-    }
-
-    private void MaxPrice_OnTextChanged(object? sender, TextChangedEventArgs e)
-    {
-        ApplyAllFilter();
-    }
-
-    private void ResetButton_Click(object? sender, RoutedEventArgs e)
-    {
+        
+        LoadData();
     }
 }

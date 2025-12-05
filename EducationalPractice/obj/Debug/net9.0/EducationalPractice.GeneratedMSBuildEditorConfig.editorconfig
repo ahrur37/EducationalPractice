@@ -41,6 +41,9 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [C:/Users/ahrur/source/repos/EducationalPractice/EducationalPractice/Control/ExamsList.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/ahrur/source/repos/EducationalPractice/EducationalPractice/Control/HeadOfDeptList.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/ahrur/source/repos/EducationalPractice/EducationalPractice/Control/MainControls.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
@@ -48,6 +51,9 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Users/ahrur/source/repos/EducationalPractice/EducationalPractice/Control/TeachersList.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/ahrur/source/repos/EducationalPractice/EducationalPractice/Views/ChangeGrade.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Users/ahrur/source/repos/EducationalPractice/EducationalPractice/Views/CreateAndChangeDisciplines.axaml]

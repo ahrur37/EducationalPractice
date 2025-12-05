@@ -8,4 +8,5 @@ internal class VariableData
     public static Login selectUser { get; set; }
     public static Discipline selectDiscipline { get; set; }
     public static Exam selectExam { get; set; }
+    public static Student selectStudent { get; set; }
 }

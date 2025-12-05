@@ -1,0 +1,74 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="600"
+             x:Class="EducationalPractice.Control.HeadOfDeptList">
+    <Grid Grid.Column="1" RowDefinitions=" Auto, *, Auto">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="12">
+            <!-- Поиск по ФИО -->
+            <TextBox Name="SearchBox"
+                     Watermark="Поиск по ФИО..."
+                     Width="250"
+                     Height="36"
+                     Padding="10 0"
+                     FontSize="14"
+                     TextChanged="SearchBox_TextChanged"/>
+
+            <!-- Фильтр по кафедре -->
+            <TextBlock Text="Кафедра:" VerticalAlignment="Center" FontSize="14"/>
+            <ComboBox Name="DepartmentFilter"
+                      Width="200"
+                      Height="36"
+                      FontSize="14"
+                      SelectionChanged="DepartmentFilter_SelectionChanged">
+                <ComboBoxItem Content="Все кафедры" Tag=""/>
+            </ComboBox>
+        </StackPanel>
+        
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" 
+                      MaxHeight="600">
+            <DataGrid Name="HeadDataGrid"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      GridLinesVisibility="Horizontal"
+                      Background="Transparent"
+                      BorderThickness="0"
+                      RowHeight="48"
+                      FontSize="14"
+                      HeadersVisibility="Column">
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ФИО заведующей"
+                                        Binding="{Binding TabNumberNavigation.Fullname}"
+                                        Width="220"/>
+
+                    <DataGridTextColumn Header="Кафедра"
+                                        Binding="{Binding TabNumberNavigation.IdDepartNavigation.NameDepart}"
+                                        Width="280"/>
+
+                    <DataGridTextColumn Header="Зарплата"
+                                        Binding="{Binding TabNumberNavigation.Salary, StringFormat='{}{0:F0} ₽'}"
+                                        Width="120"/>
+
+                    <DataGridTextColumn Header="Стаж работы"
+                                        Binding="{Binding ExperienceYears, StringFormat='{}{0} л.'}"
+                                        Width="100"/>
+
+                    
+                    <DataGridTemplateColumn Header="Отчислить" Width="110">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Click="DeleteHeadButton_Click" Name="DeleteBtn" Content=" 🗑️ "/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <Button Content="Добавление" Name="AddBtn"  Click="AddHeadButton_Click" HorizontalAlignment="Left"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

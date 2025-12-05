@@ -97,7 +97,7 @@
                          BorderBrush="#CBD5E1"
                          CornerRadius="6"/>
 
-                <TextBlock Text="Департамент" 
+                <TextBlock Text="Кафедра" 
                            FontSize="14" 
                            FontWeight="Medium" 
                            Foreground="#1E293B"/>

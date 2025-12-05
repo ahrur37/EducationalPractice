@@ -38,20 +38,6 @@
                         BorderThickness="1.5"
                         CornerRadius="6"/>
 
-            <!-- Код дисциплины (текстовое поле) -->
-            <TextBlock Text="Код дисциплины" 
-                       FontSize="14" 
-                       Foreground="#334155"/>
-            <TextBox Name="DisciplineCodeText"
-                     Text="{Binding DisciplineCode}"
-                     Height="40"
-                     FontSize="16"
-                     Padding="10"
-                     BorderThickness="1.5"
-                     BorderBrush="#CBD5E1"
-                     Background="White"
-                     CornerRadius="6"/>
-
             <!-- Выбор дисциплины -->
             <TextBlock Text="Дисциплина" 
                        FontSize="14" 

@@ -1,0 +1,104 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        x:Class="EducationalPractice.Views.ChangeGrade"
+        Title="Редактирование оценки"
+        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="550"
+        Width="500" Height="550"
+        MinWidth="500" MinHeight="540">
+    
+    <Border Background="#F8FAFC">
+        <Grid Margin="30">
+            <StackPanel Spacing="16">
+                <TextBlock Text="Изменение оценки за экзамен"
+                           FontSize="22"
+                           FontWeight="SemiBold"
+                           HorizontalAlignment="Center"
+                           Foreground="#1E293B"
+                           Margin="0,0,0,24"/>
+
+                <TextBlock Text="Студент" 
+                           FontSize="14" 
+                           Foreground="#334155"/>
+                <TextBox IsReadOnly="True"
+                         Text="{Binding StudentRegNavigation.Fullname}"
+                         Background="#F1F5F9"
+                         BorderBrush="#CBD5E1"
+                         Height="40"
+                         FontSize="16"
+                         Padding="10"
+                         CornerRadius="6"/>
+
+                <!-- Дисциплина -->
+                <TextBlock Text="Дисциплина" 
+                           FontSize="14" 
+                           Foreground="#334155"/>
+                <TextBox IsReadOnly="True"
+                         Text="{Binding DisciplineCodeNavigation.NameDisc}"
+                         Background="#F1F5F9"
+                         BorderBrush="#CBD5E1"
+                         Height="40"
+                         FontSize="16"
+                         Padding="10"
+                         CornerRadius="6"/>
+
+                <!-- Дата экзамена -->
+                <TextBlock Text="Дата экзамена" 
+                           FontSize="14" 
+                           Foreground="#334155"/>
+                <TextBox IsReadOnly="True"
+                         Text="{Binding ExamDate, StringFormat='{}{0:dd.MM.yyyy}'}"
+                         Background="#F1F5F9"
+                         BorderBrush="#CBD5E1"
+                         Height="40"
+                         FontSize="16"
+                         Padding="10"
+                         CornerRadius="6"/>
+
+                <!-- Оценка -->
+                <TextBlock Text="Оценка" 
+                           FontSize="14" 
+                           Foreground="#334155"/>
+                <ComboBox x:Name="ComboGrade"
+                          Height="40"
+                          FontSize="16"
+                          Background="White"
+                          BorderBrush="#CBD5E1"
+                          BorderThickness="1.5"
+                          CornerRadius="6">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" 
+                                       FontWeight="SemiBold"
+                                       HorizontalAlignment="Center"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <!-- Кнопки -->
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Center" 
+                            Spacing="20"
+                            Margin="0,30,0,0">
+                    
+                    <Button Content="Сохранить"
+                            Click="Save_Click"
+                            Width="120"
+                            Height="40"
+                            Background="#1E40AF"
+                            Foreground="White"
+                            CornerRadius="8"
+                            FontWeight="SemiBold">
+                        <Button.Styles>
+                            <Style Selector="Button:hover /template/ ContentPresenter">
+                                <Setter Property="Background" Value="#1E3A8A"/>
+                            </Style>
+                        </Button.Styles>
+                    </Button>
+                </StackPanel>
+
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
