@@ -9,6 +9,7 @@ using EducationalPractice.Data;
 using EducationalPractice.Models;
 using EducationalPractice.Views;
 using Microsoft.EntityFrameworkCore;
+using MsBox.Avalonia;
 
 namespace EducationalPractice.Control;
 
@@ -33,7 +34,11 @@ public partial class ExamsList : UserControl
     private async void DataGrid_DoubleTapped(object? sender, TappedEventArgs e)
     {
         if (VariableData.authUser.TabNumEmployeeNavigation == null ||
-            VariableData.authUser.TabNumEmployeeNavigation.PositionEmp == "преподаватель") return;
+            VariableData.authUser.TabNumEmployeeNavigation.PositionEmp == "преподаватель") 
+        {
+            await MessageBoxManager.GetMessageBoxStandard("Ошибка", "У вас не хватает прав").ShowAsync();
+            return;
+        }
         
         var selectedExam = DataGridItems.SelectedItem as Exam;
         if(selectedExam == null)return; 
@@ -49,6 +54,12 @@ public partial class ExamsList : UserControl
 
     private async void ChangeGradeButton_Click(object? sender, RoutedEventArgs e)
     {
+        if (VariableData.authUser.TabNumEmployeeNavigation == null) 
+        {
+            await MessageBoxManager.GetMessageBoxStandard("Ошибка", "У вас не хватает прав").ShowAsync();
+            return;
+        }
+
         var selectedExam = (sender as Button)?.DataContext as Exam;
         if(selectedExam == null)return; 
         
@@ -61,8 +72,15 @@ public partial class ExamsList : UserControl
         LoadData();
     }
     
-    private void DeleteButton_Click(object? sender, RoutedEventArgs e)
+    private async void DeleteButton_Click(object? sender, RoutedEventArgs e)
     {        
+        if (VariableData.authUser.TabNumEmployeeNavigation == null ||
+            VariableData.authUser.TabNumEmployeeNavigation.PositionEmp == "преподаватель") 
+        {
+            await MessageBoxManager.GetMessageBoxStandard("Ошибка", "У вас не хватает прав").ShowAsync();
+            return;
+        }
+
         var button = sender as Button;
         var selectedExam = button?.DataContext as Exam;
         
@@ -78,7 +96,14 @@ public partial class ExamsList : UserControl
 
     private async void AddButton_Click(object? sender, RoutedEventArgs e)
     {
-        VariableData.selectUser = null;
+        if (VariableData.authUser.TabNumEmployeeNavigation == null ||
+            VariableData.authUser.TabNumEmployeeNavigation.PositionEmp == "преподаватель")
+        {
+            await MessageBoxManager.GetMessageBoxStandard("Ошибка", "У вас не хватает прав").ShowAsync();
+            return;
+        }
+
+        VariableData.selectExam = null;
         
         var parent = this.VisualRoot as Window;
         var addwinwUser = new CreateAndChangeExams();

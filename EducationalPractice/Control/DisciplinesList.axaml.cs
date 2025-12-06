@@ -9,6 +9,7 @@ using EducationalPractice.Data;
 using EducationalPractice.Models;
 using EducationalPractice.Views;
 using Microsoft.EntityFrameworkCore;
+using MsBox.Avalonia;
 
 namespace EducationalPractice.Control;
 
@@ -72,6 +73,13 @@ public partial class DisciplinesList : UserControl
 
     private async void DataGrid_DoubleTapped(object? sender, TappedEventArgs e)
     {       
+        if (VariableData.authUser.TabNumEmployeeNavigation == null ||
+            VariableData.authUser.TabNumEmployeeNavigation.PositionEmp == "преподаватель") 
+        {
+            await MessageBoxManager.GetMessageBoxStandard("Ошибка", "У вас не хватает прав").ShowAsync();
+            return;
+        }
+
         var selectedDiscipline = DataGridItems.SelectedItem as Discipline;
         if(selectedDiscipline == null) return; 
         
@@ -84,8 +92,15 @@ public partial class DisciplinesList : UserControl
         LoadData(); // Обновляем после редактирования
     }
     
-    private void DeleteButton_Click(object? sender, RoutedEventArgs e)
+    private async void DeleteButton_Click(object? sender, RoutedEventArgs e)
     {
+        if (VariableData.authUser.TabNumEmployeeNavigation == null ||
+            VariableData.authUser.TabNumEmployeeNavigation.PositionEmp == "преподаватель") 
+        {
+            await MessageBoxManager.GetMessageBoxStandard("Ошибка", "У вас не хватает прав").ShowAsync();
+            return;
+        }
+
         var button = sender as Button;
         var selectDiscipline = button?.DataContext as Discipline;
         
@@ -101,6 +116,13 @@ public partial class DisciplinesList : UserControl
 
     private async void AddButton_Click(object? sender, RoutedEventArgs e)
     {
+        if (VariableData.authUser.TabNumEmployeeNavigation == null ||
+            VariableData.authUser.TabNumEmployeeNavigation.PositionEmp == "преподаватель") 
+        {
+            await MessageBoxManager.GetMessageBoxStandard("Ошибка", "У вас не хватает прав").ShowAsync();
+            return;
+        }
+
         VariableData.selectDiscipline = null;
         
         var parent = this.VisualRoot as Window;

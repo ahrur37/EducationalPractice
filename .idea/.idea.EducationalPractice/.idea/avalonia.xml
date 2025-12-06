@@ -9,6 +9,7 @@
         <entry key="EducationalPractice/Control/ExamsList.axaml" value="EducationalPractice/EducationalPractice.csproj" />
         <entry key="EducationalPractice/Control/HeadOfDeptList.axaml" value="EducationalPractice/EducationalPractice.csproj" />
         <entry key="EducationalPractice/Control/MainControls.axaml" value="EducationalPractice/EducationalPractice.csproj" />
+        <entry key="EducationalPractice/Control/MyProfile.axaml" value="EducationalPractice/EducationalPractice.csproj" />
         <entry key="EducationalPractice/Control/StudentsList.axaml" value="EducationalPractice/EducationalPractice.csproj" />
         <entry key="EducationalPractice/Control/TeachersList.axaml" value="EducationalPractice/EducationalPractice.csproj" />
         <entry key="EducationalPractice/MainWindow.axaml" value="EducationalPractice/EducationalPractice.csproj" />

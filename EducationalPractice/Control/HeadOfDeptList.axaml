@@ -53,7 +53,7 @@
 
                     <DataGridTextColumn Header="Стаж работы"
                                         Binding="{Binding ExperienceYears, StringFormat='{}{0} л.'}"
-                                        Width="100"/>
+                                        Width="125"/>
 
                     
                     <DataGridTemplateColumn Header="Отчислить" Width="110">

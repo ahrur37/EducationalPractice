@@ -9,6 +9,7 @@ using EducationalPractice.Data;
 using EducationalPractice.Models;
 using EducationalPractice.Views;
 using Microsoft.EntityFrameworkCore;
+using MsBox.Avalonia;
 
 namespace EducationalPractice.Control;
 
@@ -72,6 +73,12 @@ public partial class StudentsList : UserControl
 
     private async void DataGrid_DoubleTapped(object? sender, TappedEventArgs e)
     {
+        if (VariableData.authUser.TabNumEmployeeNavigation.PositionEmp == "преподаватель") 
+        {
+            await MessageBoxManager.GetMessageBoxStandard("Ошибка", "У вас не хватает прав").ShowAsync();
+            return;
+        }
+
         var selectedStudent = DataGridItems.SelectedItem as Student; // Исправлено: Student, а не Login
         if(selectedStudent == null) return; 
         
@@ -84,8 +91,14 @@ public partial class StudentsList : UserControl
         LoadData();
     }
     
-    private void DeleteButton_Click(object? sender, RoutedEventArgs e)
+    private async void DeleteButton_Click(object? sender, RoutedEventArgs e)
     {        
+        if (VariableData.authUser.TabNumEmployeeNavigation.PositionEmp == "преподаватель") 
+        {
+            await MessageBoxManager.GetMessageBoxStandard("Ошибка", "У вас не хватает прав").ShowAsync();
+            return;
+        }
+        
         var button = sender as Button;
         var selectedStudent = button?.DataContext as Student; // Исправлено: Student, а не Login
         
@@ -101,6 +114,12 @@ public partial class StudentsList : UserControl
 
     private async void AddButton_Click(object? sender, RoutedEventArgs e)
     {
+        if (VariableData.authUser.TabNumEmployeeNavigation.PositionEmp == "преподаватель") 
+        {
+            await MessageBoxManager.GetMessageBoxStandard("Ошибка", "У вас не хватает прав").ShowAsync();
+            return;
+        }
+
         VariableData.selectStudent = null; // Исправлено
 
         var parent = this.VisualRoot as Window;
